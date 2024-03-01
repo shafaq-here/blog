@@ -13,6 +13,26 @@ if (!$username_email) {
     $_SESSION['signin-error'] = "Password is required";
 } else {
     //check fetch userdata, and check
+    $fetch_user_query = "SELECT FROM users WHERE username='$username_email' OR email='$username_email'" ;
+
+    //execute the query
+    $fetch_user_result = mysqli_query($connection, $fetch_user_query) ;
+
+    //if the num rows of the result is 1, hence the user is found and we will compare the password, from the result using the fetch assoc
+    if(mysqli_num_rows($fetch_user_result)==1) {
+        //create a user record array, get the hashed password from it and compare it with the password from the form
+        $user_record = mysqli_fetch_assoc($fetch_user_result) ;
+        $db_password = $user_record['password'] ;
+        //compare the passwords
+        if(password_verify($password,$db_password)) {
+            //hence the passwords match
+        } else {
+            $_SESSION['signin-error'] = "Password is Incorrect, Please try again." ;
+        }
+    } else {
+        //user not found, so add a sesssion message
+        $_SESSION['signin-error'] = "User not Found";
+    }
 }
 
 if (isset($_POST['submit'])) {
