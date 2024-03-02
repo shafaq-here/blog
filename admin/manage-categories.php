@@ -43,7 +43,7 @@ include 'partials/header.php'
                         <h5>Manage Categories</h5>
                     </a>
                 </li>
-                <?php endif ; header('location:'.ROOT_URL.'admin/'); ?>
+                <?php endif ?>
             </ul>
         </aside>
         <main>
