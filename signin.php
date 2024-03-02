@@ -1,5 +1,12 @@
-<?php  
-require 'config/constants.php' ;
+<?php
+require 'config/constants.php';
+
+//get the values from the session 
+$username_email = $_SESSION['signin-data']['username_email'] ?? null;
+$password = $_SESSION['signin-data']['password'] ?? null;
+
+//make sure to unset it
+unset($_SESSION['signin-data']);
 
 ?>
 
@@ -26,26 +33,38 @@ require 'config/constants.php' ;
         <div class="container form__section-container">
             <h2>Sign In</h2>
             <!-- We would want to display some alert messages, error or success so we create a separate div for that -->
-            <?php  
-             if(isset($_SESSION['signup-success'])) {
-                ?>
+            <?php
+            if (isset($_SESSION['signup-success'])) :
+            ?>
                 <div class="alert__message success">
                     <p>
-                        <?php 
-                        echo $_SESSION['signup-success'] ;
+                        <?php
+                        echo $_SESSION['signup-success'];
                         unset($_SESSION['signup-success'])
                         ?>
                     </p>
-            </div>
+                </div>
 
-            
+
 
             <?php
-             }
+            elseif(isset($_SESSION['signin-error'])) : 
+                ?>
+                <div class="alert__message error">
+                    <p>
+                        <?php
+                        echo $_SESSION['signin-error'];
+                        unset($_SESSION['signin-error'])
+                        ?>
+                    </p>
+                </div>
+
+            <?php
+            endif
             ?>
-            <form action="<?php echo ROOT_URL ?>signin-logic.php" enctype="multipart/form-data">
-                <input type="text" name="username_email" placeholder="Username or Email">
-                <input type="password" name="password" placeholder="Password">
+            <form action="<?php echo ROOT_URL ?>signin-logic.php" enctype="multipart/form-data" method="POST">
+                <input type="text" name="username_email" value="<?= $username_email ?>" placeholder="Username or Email">
+                <input type="password" name="password" value="<?= $password ?>" placeholder="Password">
 
 
                 <button type="submit" name="submit" class="btn">Sign In</button>
