@@ -52,6 +52,7 @@ if (isset($_POST['submit'])) {
         if(isset($_SESSION['signin-error'])) {
             $_SESSION['signin-data'] = $_POST ;
             header('location:'.ROOT_URL.'signin.php') ;
+            die() ;
         }
 }
 } else {
