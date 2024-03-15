@@ -365,7 +365,7 @@ footer ul a:hover {
 
 /* -------styling the general button class */
 
-.btn {
+.btn {  
     display: inline-block;
     width: fit-content;
     padding: 0.6rem 1.2rem;

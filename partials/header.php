@@ -29,17 +29,20 @@ require 'config/database.php';
                 <li><a href="<?php echo ROOT_URL ?>about.php">About</a></li>
                 <li><a href="<?php echo ROOT_URL ?>services.php">Services</a></li>
                 <li><a href="<?php echo ROOT_URL ?>contact.php">Contact</a></li>
-                <li><a href="<?php echo ROOT_URL ?>signin.php">Signin</a></li>
-                <!-- the one below will only be visible when the user is logged in -->
-                <!-- <li class="nav__profile">
-                    <div class="avatar">
-                        <img src="./images/avatar1.jpg" alt="">
-                    </div>
-                    <ul>
-                        <li><a href="<?php echo ROOT_URL ?>admin/index.php">Dashboard</a></li>
-                        <li><a href="<?php echo ROOT_URL ?>logout.php">Logout</a></li>
-                    </ul>
-                </li> -->
+               <!-- the one below will only be visible when the user is logged in -->
+               <?php if (isset($_SESSION['user-id'])) : ?>
+                    <li class="nav__profile">
+                        <div class="avatar">
+                            <img src="./images/avatar1.jpg" alt="">
+                        </div>
+                        <ul>
+                            <li><a href="<?php echo ROOT_URL ?>admin/index.php">Dashboard</a></li>
+                            <li><a href="<?php echo ROOT_URL ?>logout.php">Logout</a></li>
+                        </ul>
+                    </li>
+                <?php else : ?>
+                    <li><a href="<?php echo ROOT_URL ?>signin.php">Signin</a></li>
+                <?php endif ?>
 
             </ul>
 
