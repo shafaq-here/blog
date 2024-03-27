@@ -1,22 +1,41 @@
 <?php 
-include 'partials/header.php'
+include 'partials/header.php' ;
+// require 'config/constants.php';
+
+//the form data that we have received fromt the post super global, lets get all the values
+
+$firstname = $_SESSION['add-user-data']['firstname']  ?? null;
+$lastname = $_SESSION['add-user-data']['lastname'] ?? null;
+$username = $_SESSION['add-user-data']['username'] ?? null;
+$email = $_SESSION['add-user-data']['email'] ?? null;
+$createpassword = $_SESSION['add-user-data']['createpassword'] ?? null;
+$confirmpassword = $_SESSION['add-user-data']['confirmpassword'] ?? null;
+$is_admin = $_SESSION['add-user-data']['userrole'] ?? null;
+
+
+//unset the values right after that
+unset($_SESSION['add-user-data']) ;
 ?>
     
     <section class="form__section">
         <div class="container form__section-container">
             <h2>Add User</h2>
             <!-- We would want to display some alert messages, error or success so we create a separate div for that -->
-            <div class="alert__message error">
-                <p>This is an error message</p>
-            </div>
+            <?php if(isset($_SESSION['add-user-error'])) : ?>
+                <div class="alert__message error">
+                    <?= $_SESSION['add-user-error'] ;
+                        unset($_SESSION['add-user-error']) ;
+                    ?>    
+                </div>
+            <?php endif ?>                
             <form action="<?php echo ROOT_URL ?>admin/add-user-logic.php" enctype="multipart/form-data" method="POST">
-                <input type="text" name="firstname"placeholder="First Name">
-                <input type="text" name="lastname" placeholder="Last Name">
-                <input type="text" name="username" placeholder="Username">
-                <input type="email" name="email" placeholder="Email">
-                <input type="password" name="createpasswordd" placeholder="Create Password">
-                <input type="password" name="confirmpassword" placeholder="Confirm Password">
-                <select name="userrole">
+                <input type="text" name="firstname" value="<?= $firstname ?>" placeholder="First Name">
+                <input type="text" name="lastname" value="<?= $lastname ?>" placeholder="Last Name">
+                <input type="text" name="username" value="<?= $username ?>" placeholder="Username">
+                <input type="email" name="email" value="<?= $email ?>" placeholder="Email">
+                <input type="password" name="createpassword" value="<?= $createpassword ?>" placeholder="Create Password">
+                <input type="password" name="confirmpassword" value="<?= $confirmpassword ?>" placeholder="Confirm Password">
+                <select name="userrole" value="<?= $value="<?= $is_admin ?>" ?>">
                     <option value="0">Author</option>
                     <option value="1">Admin</option>
                 </select>
