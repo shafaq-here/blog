@@ -18,7 +18,7 @@ if (isset($_GET['id'])) {
         <h2>Edit User</h2>
         <!-- We would want to display some alert messages, error or success so we create a separate div for that -->
 
-        <form action="<?= ROOT_URL ?>admin/edit-user-logic.php" method="POST">
+        <form action="<?= ROOT_URL ?>admin/edit-user-logic.php?id=<?=$id?>" method="POST">
             <input type="text" name="firstname" value="<?= $user['firstname'] ?>" placeholder="First Name">
             <input type="text" name="lastname" value="<?= $user['lastname'] ?>" placeholder="Last Name">
 
