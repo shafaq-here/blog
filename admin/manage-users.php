@@ -8,7 +8,7 @@ $users = mysqli_query($connection, $query);
 
 ?>
 <section class="dashboard">
-    <?php if (isset($_SESSION['add-user-success'])) : ?>
+    <?php if (isset($_SESSION['add-user-success'])) : //print the success message everytime a new user is added by the admin?>
         <div class="alert__message success container">
             <p>
                 <?php
@@ -17,7 +17,26 @@ $users = mysqli_query($connection, $query);
                 ?>
             </p>
         </div>
+    <?php elseif (isset($_SESSION['edit-user-success'])) : //print the success message everytime a user is updated by the admin?>    
+        <div class="alert__message success container">
+            <p>
+                <?php
+                echo $_SESSION['edit-user-success'];
+                unset($_SESSION['edit-user-success'])
+                ?>
+            </p>
+        </div>
+    <?php elseif (isset($_SESSION['edit-user-error'])) : //print the error message everytime a user is failed to be updated by the admin?>    
+        <div class="alert__message error container">
+            <p>
+                <?php
+                echo $_SESSION['edit-user-error'];
+                unset($_SESSION['edit-user-error'])
+                ?>
+            </p>
+        </div>
     <?php endif ?>
+    
     <div class="container dashboard__container">
         <button id="show__sidebar-btn" class="sidebar__toggle">
             <i class="uil uil-angle-right-b"></i>
