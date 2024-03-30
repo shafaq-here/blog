@@ -32,7 +32,7 @@ if(isset($_GET['id'])) {
             <textarea rows="5" name="description" placeholder="Description"><?= $category['description'] ?></textarea>
 
 
-            <button type="submit" class="btn">Edit Category</button>
+            <button type="submit" name="submit" class="btn">Edit Category</button>
 
 
         </form>
