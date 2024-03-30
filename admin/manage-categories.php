@@ -62,11 +62,13 @@ $categories = mysqli_query($connection,$query) ;
                     </tr>
                 </thead>
                 <tbody>
+                    <?php while($category = mysqli_fetch_assoc($categories)) : ?>
                     <tr>
-                        <td>Travel</td>
-                        <td><a href="<?php echo ROOT_URL ?>admin/edit-category.php" class="btn sm">Edit</a></td>
-                        <td><a href="<?php echo ROOT_URL ?>admin/delete-category.php" class="btn sm danger">Delete</a></td>
+                        <td><?= $category['title'] ?></td>
+                        <td><a href="<?php echo ROOT_URL ?>admin/edit-category.php?id=<?= $category['id'] ?>" class="btn sm">Edit</a></td>
+                        <td><a href="<?php echo ROOT_URL ?>admin/delete-category.php?id=<?= $category['id'] ?>" class="btn sm danger">Delete</a></td>
                     </tr>
+                    <?php endwhile ?>
                 </tbody>
             </table>
             <?php else : ?>
