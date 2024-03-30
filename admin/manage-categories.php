@@ -1,5 +1,9 @@
 <?php
-include 'partials/header.php'
+include 'partials/header.php' ;
+
+//fetch all the categories from the database
+$query = "SELECT * from categories ORDER BY title" ;
+$categories = mysqli_query($connection,$query) ;
 ?>
 
 <section class="dashboard">
@@ -48,6 +52,7 @@ include 'partials/header.php'
         </aside>
         <main>
             <h2>Manage Categories</h2>
+            <?php if(mysqli_num_rows($categories) > 0) : ?>
             <table>
                 <thead>
                     <tr>
@@ -62,20 +67,13 @@ include 'partials/header.php'
                         <td><a href="<?php echo ROOT_URL ?>admin/edit-category.php" class="btn sm">Edit</a></td>
                         <td><a href="<?php echo ROOT_URL ?>admin/delete-category.php" class="btn sm danger">Delete</a></td>
                     </tr>
-
-                    <tr>
-                        <td>Travel</td>
-                        <td><a href="<?php echo ROOT_URL ?>admin/edit-category.php" class="btn sm">Edit</a></td>
-                        <td><a href="<?php echo ROOT_URL ?>admin/delete-category.php" class="btn sm danger">Delete</a></td>
-                    </tr>
-
-                    <tr>
-                        <td>Travel</td>
-                        <td><a href="<?php echo ROOT_URL ?>admin/edit-category.php" class="btn sm">Edit</a></td>
-                        <td><a href="<?php echo ROOT_URL ?>admin/delete-category.php" class="btn sm danger">Delete</a></td>
-                    </tr>
                 </tbody>
             </table>
+            <?php else : ?>
+                <div class="alert__message error">
+                    <p>No Category found!</p>
+                </div>
+            <?php endif ?>
         </main>
     </div>
 </section>
