@@ -27,13 +27,33 @@ $categories = mysqli_query($connection,$query) ;
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['edit-category-error'])) : //print the error message everytime a user is failed to be updated by the admin
+    <?php elseif (isset($_SESSION['edit-category-error'])) : //print the error message everytime a category is failed to be updated by the admin
     ?>
         <div class="alert__message error container">
             <p>
                 <?php
                 echo $_SESSION['edit-category-error'];
                 unset($_SESSION['edit-category-error'])
+                ?>
+            </p>
+        </div>
+    <?php elseif (isset($_SESSION['delete-category-error'])) : //print the error message everytime a category is failed to be deleted by the admin
+    ?>
+        <div class="alert__message error container">
+            <p>
+                <?php
+                echo $_SESSION['delete-category-error'];
+                unset($_SESSION['delete-category-error'])
+                ?>
+            </p>
+        </div>
+    <?php elseif (isset($_SESSION['delete-category-success'])) : //print the error message everytime a category is updated by the admin
+    ?>
+        <div class="alert__message success container">
+            <p>
+                <?php
+                echo $_SESSION['delete-category-success'];
+                unset($_SESSION['delete-category-success'])
                 ?>
             </p>
         </div>
