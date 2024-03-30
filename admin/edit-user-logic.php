@@ -30,3 +30,4 @@ if(isset($_POST['submit'])) {
 
 }
 header('location: '.ROOT_URL.'admin/manage-users.php') ;
+die() ;
