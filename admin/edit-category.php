@@ -25,7 +25,7 @@ if(isset($_GET['id'])) {
         <h2>Edit Category</h2>
         <!-- We would want to display some alert messages, error or success so we create a separate div for that -->
 
-        <form action="<?= ROOT_URL?>admin/edit-category-logic.php" method="POST">
+        <form action="<?= ROOT_URL?>admin/edit-category-logic.php?id=<?= $id ?>" method="POST">
             <input type="text" name="title" value="<?= $category['title'] ?>" placeholder="Title">
             <textarea rows="5" name="description" placeholder="Description"><?= $category['description'] ?></textarea>
 
