@@ -3,8 +3,9 @@
 //check for the id param
 if(isset($_GET['id'])) {
     //get the id and sanitize it
-    $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT) ;
     require 'partials/header.php' ;
+    $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT) ;
+
     //fetch the category with the id
     $query = "SELECT * from categories where id=$id" ;
     $result = mysqli_query($connection, $query) ;
@@ -18,6 +19,7 @@ if(isset($_GET['id'])) {
 } else {
     require 'config/constants.php' ;
     header('location: '.ROOT_URL.'admin/manage-categories.php') ;
+    die() ;
 }
 ?>
 <section class="form__section">
